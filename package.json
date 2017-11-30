@@ -1,0 +1,21 @@
+{
+  "name": "yarn-workspace-sync-deps",
+  "description":
+    "A simple script for keeping dependencies are same between root and packages on Yarn workspaces",
+  "version": "0.1.3",
+  "scripts": {
+    "test": "jest",
+    "prepublish": "yarn test"
+  },
+  "bin": {
+    "yarn-workspace-sync-deps": "index.js",
+    "yarnw-sync-deps": "index.js"
+  },
+  "repository": "mybigday/yarn-workspace-sync-deps",
+  "author": "Jhen <developer@jhen.me>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "shelljs": "^0.7.8"
+  }
+}

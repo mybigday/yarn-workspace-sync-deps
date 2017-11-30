@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`yarn-workspace-sync-deps 1`] = `
+"{
+  \\"name\\": \\"test-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"redux\\": \\"2\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps 2`] = `
+"{
+  \\"name\\": \\"test2-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"3\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps 3`] = `
+"{
+  \\"name\\": \\"test-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"redux\\": \\"^3.7.2\\"
+  }
+}"
+`;
+
+exports[`yarn-workspace-sync-deps 4`] = `
+"{
+  \\"name\\": \\"test2-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^4.17.4\\"
+  }
+}"
+`;
