@@ -3,16 +3,9 @@ language: node_js
 node_js:
   - "stable"
 cache:
+  yarn: true
   directories:
     - node_modules
-env:
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - yarn config set workspaces-experimental true
 script: yarn
