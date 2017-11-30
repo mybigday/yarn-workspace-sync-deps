@@ -23,12 +23,12 @@ $ yarn add --dev -W yarn-workspace-sync-deps
 
 ## Usage
 
-We are using it before yarn install, in the root workspace:
+We are using it after yarn install in the root workspace:
 
 ```json
 {
   "scripts": {
-    "preinstall": "yarnw-sync-deps"
+    "postinstall": "yarnw-sync-deps && yarn --ignore-scripts"
   }
 }
 ```
