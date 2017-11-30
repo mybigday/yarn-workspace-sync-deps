@@ -47,7 +47,7 @@ const handleWorkspace = workspace => {
           `Sync dependency \`${d}\`: ${mayOldVersion} -> ${version}`,
         )
         pkg.dependencies[d] = version
-        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
+        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
       }
     })
   })

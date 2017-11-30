@@ -35,7 +35,8 @@ exports[`yarn-workspace-sync-deps 3`] = `
   \\"dependencies\\": {
     \\"redux\\": \\"^3.7.2\\"
   }
-}"
+}
+"
 `;
 
 exports[`yarn-workspace-sync-deps 4`] = `
@@ -47,5 +48,6 @@ exports[`yarn-workspace-sync-deps 4`] = `
   \\"dependencies\\": {
     \\"lodash\\": \\"^4.17.4\\"
   }
-}"
+}
+"
 `;
