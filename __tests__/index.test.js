@@ -16,6 +16,12 @@ test('yarn-workspace-sync-deps', () => {
         'utf-8',
       ),
     ).toMatchSnapshot()
+    expect(
+      fs.readFileSync(
+        path.join(__dirname, 'fixture/test3/test3-package1/package.json'),
+        'utf-8',
+      ),
+    ).toMatchSnapshot()
   }
 
   shell.cd(path.join(__dirname, 'fixture/'))

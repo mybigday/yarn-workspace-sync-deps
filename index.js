@@ -1,5 +1,9 @@
 #! /usr/bin/env node
 
+const argv = require('minimist')(process.argv.slice(2), {
+  string: ['others'],
+})
+
 const fs = require('fs')
 const path = require('path')
 const rootPkg = require(path.join(process.cwd(), '/package.json'))
@@ -53,4 +57,10 @@ const handleWorkspace = workspace => {
   })
 }
 
-rootPkg.workspaces.forEach(handleWorkspace)
+let workspaces = [...rootPkg.workspaces]
+
+if (argv.others) {
+  workspaces = workspaces.concat(argv.others)
+}
+
+workspaces.forEach(handleWorkspace)
