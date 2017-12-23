@@ -28,6 +28,19 @@ exports[`yarn-workspace-sync-deps 2`] = `
 
 exports[`yarn-workspace-sync-deps 3`] = `
 "{
+  \\"name\\": \\"test3-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"3\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps 4`] = `
+"{
   \\"name\\": \\"test-package1\\",
   \\"version\\": \\"1.0.0\\",
   \\"main\\": \\"index.js\\",
@@ -39,9 +52,22 @@ exports[`yarn-workspace-sync-deps 3`] = `
 "
 `;
 
-exports[`yarn-workspace-sync-deps 4`] = `
+exports[`yarn-workspace-sync-deps 5`] = `
 "{
   \\"name\\": \\"test2-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^4.17.4\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps 6`] = `
+"{
+  \\"name\\": \\"test3-package1\\",
   \\"version\\": \\"1.0.0\\",
   \\"main\\": \\"index.js\\",
   \\"license\\": \\"MIT\\",
