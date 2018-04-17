@@ -33,7 +33,8 @@ exports[`yarn-workspace-sync-deps 3`] = `
   \\"main\\": \\"index.js\\",
   \\"license\\": \\"MIT\\",
   \\"dependencies\\": {
-    \\"lodash\\": \\"3\\"
+    \\"lodash\\": \\"3\\",
+    \\"koa\\": \\"^2.2.0\\"
   }
 }
 "
@@ -72,7 +73,8 @@ exports[`yarn-workspace-sync-deps 6`] = `
   \\"main\\": \\"index.js\\",
   \\"license\\": \\"MIT\\",
   \\"dependencies\\": {
-    \\"lodash\\": \\"^4.17.4\\"
+    \\"lodash\\": \\"^4.17.4\\",
+    \\"koa\\": \\"^2.2.0\\"
   }
 }
 "

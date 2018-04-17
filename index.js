@@ -43,6 +43,7 @@ const handleWorkspace = workspace => {
           pkg.name,
           `Dependency \`${d}\` not found in root dependencies, please add it.`,
         )
+        return
       }
       const mayOldVersion = pkg.dependencies[d]
       if (version !== mayOldVersion) {
@@ -51,9 +52,9 @@ const handleWorkspace = workspace => {
           `Sync dependency \`${d}\`: ${mayOldVersion} -> ${version}`,
         )
         pkg.dependencies[d] = version
-        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
       }
     })
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
   })
 }
 

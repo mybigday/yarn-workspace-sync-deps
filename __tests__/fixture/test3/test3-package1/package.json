@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "lodash": "3"
+    "lodash": "3",
+    "koa": "^2.2.0"
   }
 }
