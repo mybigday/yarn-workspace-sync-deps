@@ -2,7 +2,7 @@
   "name": "yarn-workspace-sync-deps",
   "description":
     "A simple script for keeping dependencies are same between root and packages on Yarn workspaces",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "scripts": {
     "test": "jest",
     "prepublish": "yarn test"
