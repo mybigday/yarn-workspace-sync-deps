@@ -15,8 +15,8 @@
   "author": "Jhen <developer@jhen.me>",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^21.2.1",
-    "shelljs": "^0.7.8"
+    "jest": "^22.4.3",
+    "shelljs": "^0.8.1"
   },
   "dependencies": {
     "minimist": "^1.2.0"

@@ -1,5 +1,7 @@
 # yarn-workspace-sync-deps
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mybigday/yarn-workspace-sync-deps.svg)](https://greenkeeper.io/)
+
 > A simple script for keeping dependencies are same between root and packages on
 > Yarn workspaces.
 
