@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "__tests__/fixture/package.json",
+        "__tests__/fixture/test/test-package1/package.json",
+        "__tests__/fixture/test/test-package2/package.json",
+        "__tests__/fixture/test2/test2-package1/package.json",
+        "__tests__/fixture/test2/test2-package2/package.json",
+        "__tests__/fixture/test3/test3-package1/package.json",
+        "__tests__/fixture/test3/test3-package2/package.json",
+        "package.json"
+      ]
+    }
+  }
+}
