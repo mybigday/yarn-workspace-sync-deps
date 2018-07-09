@@ -6,5 +6,8 @@
   "dependencies": {
     "lodash": "3",
     "koa": "^2.2.0"
+  },
+  "devDependencies": {
+    "lodash": "1"
   }
 }

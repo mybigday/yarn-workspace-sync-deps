@@ -18,6 +18,25 @@ const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
 const error = (name, info) => console.error(`[${name}]`, info)
 
+const updateDependencies = (name, deps) => {
+  if (!deps) return
+  Object.keys(deps).forEach(d => {
+    const version = findDependencies(d)
+    if (!version) {
+      error(
+        name,
+        `Dependency \`${d}\` not found in root dependencies, please add it.`,
+      )
+      return
+    }
+    const mayOldVersion = deps[d]
+    if (version !== mayOldVersion) {
+      log(name, `Sync dependency \`${d}\`: ${mayOldVersion} -> ${version}`)
+      deps[d] = version
+    }
+  })
+}
+
 const handleWorkspace = workspace => {
   const dirname = workspace.replace(/\*/, '')
   const dirs = fs.readdirSync(dirname)
@@ -27,33 +46,16 @@ const handleWorkspace = workspace => {
     const pkg = require(pkgPath)
 
     if (pkg.devDependencies) {
-      warn(
-        pkg.name,
-        "Sub packages doesn't need devDependencies, please remove it.",
-      )
+      warn(pkg.name, 'has sub packages in devDependencies.')
     }
-    if (!pkg.dependencies) {
+    if (!pkg.dependencies && !pkg.devDependencies) {
       log(pkg.name, 'No dependencies')
       return
     }
-    Object.keys(pkg.dependencies).forEach(d => {
-      const version = findDependencies(d)
-      if (!version) {
-        error(
-          pkg.name,
-          `Dependency \`${d}\` not found in root dependencies, please add it.`,
-        )
-        return
-      }
-      const mayOldVersion = pkg.dependencies[d]
-      if (version !== mayOldVersion) {
-        log(
-          pkg.name,
-          `Sync dependency \`${d}\`: ${mayOldVersion} -> ${version}`,
-        )
-        pkg.dependencies[d] = version
-      }
-    })
+
+    updateDependencies(pkg.name, pkg.dependencies)
+    updateDependencies(pkg.name, pkg.devDependencies)
+
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
   })
 }
