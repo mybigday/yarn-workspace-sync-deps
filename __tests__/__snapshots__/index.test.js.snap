@@ -35,6 +35,9 @@ exports[`yarn-workspace-sync-deps 3`] = `
   \\"dependencies\\": {
     \\"lodash\\": \\"3\\",
     \\"koa\\": \\"^2.2.0\\"
+  },
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"1\\"
   }
 }
 "
@@ -75,6 +78,9 @@ exports[`yarn-workspace-sync-deps 6`] = `
   \\"dependencies\\": {
     \\"lodash\\": \\"^4.17.10\\",
     \\"koa\\": \\"^2.2.0\\"
+  },
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"^4.17.10\\"
   }
 }
 "
