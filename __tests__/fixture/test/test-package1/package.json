@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "redux": "2"
+    "redux": "2",
+    "test-package2": "1.0.0"
   }
 }

@@ -18,10 +18,11 @@ const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
 const error = (name, info) => console.error(`[${name}]`, info)
 
-const updateDependencies = (name, deps) => {
+const updateDependencies = (name, deps, ignoredList) => {
   if (!deps) return
   Object.keys(deps).forEach(d => {
     const version = findDependencies(d)
+    if (ignoredList.indexOf(d) >= 0) return
     if (!version) {
       error(
         name,
@@ -41,10 +42,14 @@ const handleWorkspace = workspace => {
   const dirname = workspace.replace(/\*/, '')
   const dirs = fs.readdirSync(dirname)
 
-  dirs.forEach(dir => {
+  const packages = dirs.map(dir => {
     const pkgPath = path.join(process.cwd(), dirname, dir, 'package.json')
     const pkg = require(pkgPath)
-
+    pkg._path = pkgPath
+    return pkg
+  })
+  const nameList = packages.map(pkg => pkg.name)
+  packages.forEach(pkg => {
     if (pkg.devDependencies) {
       warn(pkg.name, 'has sub packages in devDependencies.')
     }
@@ -53,9 +58,11 @@ const handleWorkspace = workspace => {
       return
     }
 
-    updateDependencies(pkg.name, pkg.dependencies)
-    updateDependencies(pkg.name, pkg.devDependencies)
+    updateDependencies(pkg.name, pkg.dependencies, nameList)
+    updateDependencies(pkg.name, pkg.devDependencies, nameList)
 
+    const pkgPath = pkg._path
+    delete pkg._path
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
   })
 }
