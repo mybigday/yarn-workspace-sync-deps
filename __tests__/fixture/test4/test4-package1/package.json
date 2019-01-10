@@ -1,0 +1,12 @@
+{
+  "name": "test4-package1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^3.9.3"
+  },
+  "dependencies": {
+    "redux": "^3.7.2"
+  }
+}
