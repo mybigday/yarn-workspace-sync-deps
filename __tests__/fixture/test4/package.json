@@ -1,0 +1,14 @@
+{
+  "name": "test4-fixture",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["test4-package1", "packages/*"],
+  "scripts": {
+    "preinstall": "node ../../../index"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "redux": "^4.0.0"
+  }
+}

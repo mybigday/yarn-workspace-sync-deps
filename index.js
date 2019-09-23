@@ -39,15 +39,22 @@ const updateDependencies = (name, deps, ignoredList) => {
 }
 
 const handleWorkspace = workspace => {
-  const dirname = workspace.replace(/\*/, '')
-  const dirs = fs.readdirSync(dirname)
-
-  const packages = dirs.map(dir => {
-    const pkgPath = path.join(process.cwd(), dirname, dir, 'package.json')
+  let packages
+  if (workspace.endsWith("*")) {
+    const dirname = workspace.replace(/\*/, '')
+    const dirs = fs.readdirSync(dirname)
+    packages = dirs.map(dir => {
+      const pkgPath = path.join(process.cwd(), dirname, dir, 'package.json')
+      const pkg = require(pkgPath)
+      pkg._path = pkgPath
+      return pkg
+    })
+  } else {
+    const pkgPath = path.join(process.cwd(), workspace, 'package.json')
     const pkg = require(pkgPath)
     pkg._path = pkgPath
-    return pkg
-  })
+    packages = [ pkg ]
+  }
   const nameList = packages.map(pkg => pkg.name)
   packages.forEach(pkg => {
     if (pkg.devDependencies) {

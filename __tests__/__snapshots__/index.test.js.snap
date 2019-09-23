@@ -87,3 +87,123 @@ exports[`yarn-workspace-sync-deps 6`] = `
 }
 "
 `;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 1`] = `
+"{
+  \\"name\\": \\"test4-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"^3.9.3\\"
+  },
+  \\"dependencies\\": {
+    \\"redux\\": \\"^3.7.2\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 2`] = `
+"{
+  \\"name\\": \\"test4-package2\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^3.10.1\\",
+    \\"redux\\": \\"^3.7.2\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 3`] = `
+"{
+  \\"name\\": \\"test4-package3\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"^3.9.3\\"
+  },
+  \\"dependencies\\": {
+    \\"redux\\": \\"^4.0.0\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 4`] = `
+"{
+  \\"name\\": \\"test4-package4\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^3.10.1\\",
+    \\"redux\\": \\"^3.7.2\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 5`] = `
+"{
+  \\"name\\": \\"test4-package1\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"^4.17.10\\"
+  },
+  \\"dependencies\\": {
+    \\"redux\\": \\"^4.0.0\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 6`] = `
+"{
+  \\"name\\": \\"test4-package2\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^3.10.1\\",
+    \\"redux\\": \\"^3.7.2\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 7`] = `
+"{
+  \\"name\\": \\"test4-package3\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"devDependencies\\": {
+    \\"lodash\\": \\"^4.17.10\\"
+  },
+  \\"dependencies\\": {
+    \\"redux\\": \\"^4.0.0\\"
+  }
+}
+"
+`;
+
+exports[`yarn-workspace-sync-deps named workspaces with no wild cards 8`] = `
+"{
+  \\"name\\": \\"test4-package4\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"main\\": \\"index.js\\",
+  \\"license\\": \\"MIT\\",
+  \\"dependencies\\": {
+    \\"lodash\\": \\"^4.17.10\\",
+    \\"redux\\": \\"^4.0.0\\"
+  }
+}
+"
+`;
