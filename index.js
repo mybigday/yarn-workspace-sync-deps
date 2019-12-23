@@ -90,7 +90,9 @@ const handleWorkspace = workspace => {
       warn(pkg.name, 'has sub packages in devDependencies.')
     }
     if (!pkg.dependencies && !pkg.devDependencies) {
-      log(pkg.name, 'No dependencies')
+      if (pkg.name !== undefined) {
+        log(pkg.name, 'No dependencies')
+      }
       return
     }
 
