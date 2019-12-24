@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2), {
-  string: ['others'],
+  string: ['others', 'ignore'],
 })
 
 const fs = require('fs')
@@ -18,16 +18,37 @@ const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
 const error = (name, info) => console.error(`[${name}]`, info)
 
+const ignore = (argv.ignore || process.env.YARN_SYNC_IGNORE) &&
+  new RegExp(argv.ignore|| process.env.YARN_SYNC_IGNORE)
+
+const skip = (argv.skip || process.env.YARN_SYNC_SKIP) &&
+  new RegExp(argv.skip|| process.env.YARN_SYNC_SKIP)
+
+const fix = !!(argv.fix || process.env.YARN_SYNC_FIX)
+
+let rootChanged = false
+
 const updateDependencies = (name, deps, ignoredList) => {
   if (!deps) return
   Object.keys(deps).forEach(d => {
     const version = findDependencies(d)
     if (ignoredList.indexOf(d) >= 0) return
     if (!version) {
-      error(
-        name,
-        `Dependency \`${d}\` not found in root dependencies, please add it.`,
-      )
+      if (ignore && ignore.test(d)) return
+      if (fix) {
+        if (isDev) {
+          rootDevDeps[d] = deps[d]
+        } else {
+          rootDeps[d] = deps[d]
+        }
+        ignoredList.push(d)
+        rootChanged = true
+      } else {
+        error(
+          name,
+          `Dependency \`${d}\` not found in root dependencies, please add it. Run with --fix to add automatically`,
+        )
+      }
       return
     }
     const mayOldVersion = deps[d]
@@ -45,15 +66,23 @@ const handleWorkspace = workspace => {
     const dirs = fs.readdirSync(dirname)
     packages = dirs.map(dir => {
       const pkgPath = path.join(process.cwd(), dirname, dir, 'package.json')
-      const pkg = require(pkgPath)
-      pkg._path = pkgPath
-      return pkg
+      if (fs.existsSync(pkgPath) && !(skip && skip.test(pkgPath))) {
+        const pkg = require(pkgPath)
+        pkg._path = pkgPath
+        return pkg
+      } else {
+        return false
+      }
     })
   } else {
     const pkgPath = path.join(process.cwd(), workspace, 'package.json')
-    const pkg = require(pkgPath)
-    pkg._path = pkgPath
-    packages = [pkg]
+    if (fs.existsSync(pkgPath) && !(skip && skip.test(pkgPath))) {
+      const pkg = require(pkgPath)
+      pkg._path = pkgPath
+      packages = [pkg]
+    } else {
+      packages = []
+    }
   }
   const nameList = packages.map(pkg => pkg.name)
   packages.forEach(pkg => {
@@ -61,7 +90,9 @@ const handleWorkspace = workspace => {
       warn(pkg.name, 'has sub packages in devDependencies.')
     }
     if (!pkg.dependencies && !pkg.devDependencies) {
-      log(pkg.name, 'No dependencies')
+      if (pkg.name !== undefined) {
+        log(pkg.name, 'No dependencies')
+      }
       return
     }
 
@@ -85,3 +116,19 @@ if (argv.others) {
 }
 
 workspaces.forEach(handleWorkspace)
+
+if (rootChanged) {
+  rootPkg.dependencies = Object.keys(rootDeps)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = rootDeps[key]
+      return acc
+    }, {})
+  rootPkg.devDependencies = Object.keys(rootDevDeps)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = rootDevDeps[key]
+      return acc
+    }, {})
+  fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg, null, 2) + '\n')
+}
