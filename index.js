@@ -28,7 +28,7 @@ const fix = !!(argv.fix || process.env.YARN_SYNC_FIX)
 
 let rootChanged = false
 
-const updateDependencies = (name, deps, ignoredList) => {
+const updateDependencies = (name, deps, ignoredList, isDev) => {
   if (!deps) return
   Object.keys(deps).forEach(d => {
     const version = findDependencies(d)
@@ -97,7 +97,7 @@ const handleWorkspace = workspace => {
     }
 
     updateDependencies(pkg.name, pkg.dependencies, nameList)
-    updateDependencies(pkg.name, pkg.devDependencies, nameList)
+    updateDependencies(pkg.name, pkg.devDependencies, nameList, true)
 
     const pkgPath = pkg._path
     delete pkg._path
