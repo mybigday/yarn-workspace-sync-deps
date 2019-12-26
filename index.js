@@ -14,6 +14,9 @@ const findDependencies = dependency =>
   Object.keys(allDeps).findIndex(d => d === dependency) >= 0 &&
   allDeps[dependency]
 
+const rootDeps = rootPkg.dependencies
+const rootDevDeps = rootPkg.devDependencies
+
 const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
 const error = (name, info) => console.error(`[${name}]`, info)
