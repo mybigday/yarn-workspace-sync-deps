@@ -6,7 +6,8 @@ const argv = require('minimist')(process.argv.slice(2), {
 
 const fs = require('fs')
 const path = require('path')
-const rootPkg = require(path.join(process.cwd(), '/package.json'))
+const rootPkgPath = path.join(process.cwd(), '/package.json')
+const rootPkg = require(rootPkgPath)
 
 const allDeps = Object.assign({}, rootPkg.dependencies, rootPkg.devDependencies)
 
