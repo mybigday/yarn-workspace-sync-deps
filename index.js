@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 
+const fs = require('fs')
+const path = require('path')
 const argv = require('minimist')(process.argv.slice(2), {
   string: ['others', 'ignore'],
 })
 
-const fs = require('fs')
-const path = require('path')
 const rootPkgPath = path.join(process.cwd(), '/package.json')
 const rootPkg = require(rootPkgPath)
 
@@ -22,11 +22,13 @@ const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
 const error = (name, info) => console.error(`[${name}]`, info)
 
-const ignore = (argv.ignore || process.env.YARN_SYNC_IGNORE) &&
-  new RegExp(argv.ignore|| process.env.YARN_SYNC_IGNORE)
+const ignore =
+  (argv.ignore || process.env.YARN_SYNC_IGNORE) &&
+  new RegExp(argv.ignore || process.env.YARN_SYNC_IGNORE)
 
-const skip = (argv.skip || process.env.YARN_SYNC_SKIP) &&
-  new RegExp(argv.skip|| process.env.YARN_SYNC_SKIP)
+const skip =
+  (argv.skip || process.env.YARN_SYNC_SKIP) &&
+  new RegExp(argv.skip || process.env.YARN_SYNC_SKIP)
 
 const fix = !!(argv.fix || process.env.YARN_SYNC_FIX)
 
@@ -105,7 +107,7 @@ const handleWorkspace = workspace => {
 
     const pkgPath = pkg._path
     delete pkg._path
-    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+    fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
   })
 }
 
@@ -134,5 +136,5 @@ if (rootChanged) {
       acc[key] = rootDevDeps[key]
       return acc
     }, {})
-  fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg, null, 2) + '\n')
+  fs.writeFileSync(rootPkgPath, `${JSON.stringify(rootPkg, null, 2)}\n`)
 }

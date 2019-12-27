@@ -1,0 +1,12 @@
+{
+  "extends": "@fugood/eslint-config-base",
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "no-underscore-dangle": 0
+  }
+}
