@@ -6,13 +6,17 @@ const argv = require('minimist')(process.argv.slice(2), {
 
 const fs = require('fs')
 const path = require('path')
-const rootPkg = require(path.join(process.cwd(), '/package.json'))
+const rootPkgPath = path.join(process.cwd(), '/package.json')
+const rootPkg = require(rootPkgPath)
 
 const allDeps = Object.assign({}, rootPkg.dependencies, rootPkg.devDependencies)
 
 const findDependencies = dependency =>
   Object.keys(allDeps).findIndex(d => d === dependency) >= 0 &&
   allDeps[dependency]
+
+const rootDeps = rootPkg.dependencies
+const rootDevDeps = rootPkg.devDependencies
 
 const log = (name, info) => console.log(`[${name}]`, info)
 const warn = (name, info) => console.warn(`[${name}]`, info)
