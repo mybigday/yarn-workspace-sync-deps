@@ -15,7 +15,7 @@
   "author": "Jhen <developer@jhen.me>",
   "license": "MIT",
   "devDependencies": {
-    "@fugood/eslint-config-base": "^0.2.9",
+    "@fugood/eslint-config-base": "^0.3.0",
     "eslint": "^7.0.0",
     "jest": "^26.0.0",
     "shelljs": "^0.8.1"
