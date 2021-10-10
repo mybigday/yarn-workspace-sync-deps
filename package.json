@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@fugood/eslint-config-base": "^0.4.0",
-    "eslint": "^7.0.0",
+    "eslint": "^8.0.0",
     "jest": "^27.0.1",
     "shelljs": "^0.8.1"
   },
