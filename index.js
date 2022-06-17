@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const argv = require('minimist')(process.argv.slice(2), {
   string: ['others', 'ignore'],
+  boolean: ['install-after-changed'],
 })
 
 const rootPkgPath = path.join(process.cwd(), '/package.json')
@@ -33,6 +34,7 @@ const skip =
 const fix = !!(argv.fix || process.env.YARN_SYNC_FIX)
 
 let rootChanged = false
+let pkgChanged = false
 
 const updateDependencies = (name, deps, ignoredList, isDev) => {
   if (!deps) return
@@ -61,6 +63,7 @@ const updateDependencies = (name, deps, ignoredList, isDev) => {
     if (version !== mayOldVersion) {
       log(name, `Sync dependency \`${d}\`: ${mayOldVersion} -> ${version}`)
       deps[d] = version
+      pkgChanged = true
     }
   })
 }
@@ -137,4 +140,9 @@ if (rootChanged) {
       return acc
     }, {})
   fs.writeFileSync(rootPkgPath, `${JSON.stringify(rootPkg, null, 2)}\n`)
+}
+
+if (argv['install-after-changed'] && (rootChanged || pkgChanged)) {
+  log('yarnw-sync-deps', 'Install deps after changed...')
+  require('child_process').execSync('yarn install --ignore-scripts')
 }

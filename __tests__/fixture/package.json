@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "workspaces": ["test/*", "test2/*"],
   "scripts": {
-    "preinstall": "node ../../index --others \"test3/*\""
+    "preinstall": "node ../../index --others \"test3/*\" --install-after-changed"
   },
   "license": "MIT",
   "dependencies": {
